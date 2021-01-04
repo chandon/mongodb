@@ -261,7 +261,7 @@ trait LoggableCollectionTrait
     /**
      * @see Collection::mapReduce()
      */
-    public function mapReduce($map, $reduce, $out = ['inline' => true], array $query = [], array $options = [])
+    public function mapReduce($map, $reduce, $out = ['inline' => 1], array $query = [], array $options = [])
     {
         $this->log([
             'mapReduce' => true,

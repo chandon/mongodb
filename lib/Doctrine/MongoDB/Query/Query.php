@@ -231,7 +231,7 @@ class Query implements IteratorAggregate
                 };
 
                 // Force a primary read preference if mapReduce is a write operation
-                $results = ((array) $this->query['mapReduce']['out'] !== ['inline' => true])
+                $results = ((array) $this->query['mapReduce']['out'] !== ['inline' => 1])
                     ? $this->withPrimaryReadPreference($collection->getDatabase(), $closure)
                     : $this->withReadPreference($collection->getDatabase(), $closure);
 

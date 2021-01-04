@@ -674,7 +674,7 @@ class Collection
      * @return ArrayIterator|Cursor
      * @throws ResultException if the command fails
      */
-    public function mapReduce($map, $reduce, $out = ['inline' => true], array $query = [], array $options = [])
+    public function mapReduce($map, $reduce, $out = ['inline' => 1], array $query = [], array $options = [])
     {
         if ($this->eventManager->hasListeners(Events::preMapReduce)) {
             $mapReduceEventArgs = new MapReduceEventArgs($this, $map, $reduce, $out, $query, $options);
@@ -1226,7 +1226,7 @@ class Collection
 
         foreach (['$keyf', '$reduce', 'finalize'] as $key) {
             if (isset($command[$key]) && is_string($command[$key])) {
-                $command[$key] = new \MongoCode($command[$key]);
+                $command[$key] = $command[$key];
             }
         }
 
@@ -1298,7 +1298,7 @@ class Collection
 
         foreach (['map', 'reduce', 'finalize'] as $key) {
             if (isset($command[$key]) && is_string($command[$key])) {
-                $command[$key] = new \MongoCode($command[$key]);
+                $command[$key] = $command[$key];
             }
         }
 
